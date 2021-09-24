@@ -29,6 +29,7 @@ function App() {
 
   useEffect(() => {
     loadWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function loadWeb3() {
