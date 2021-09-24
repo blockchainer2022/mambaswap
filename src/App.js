@@ -172,14 +172,16 @@ function App() {
             });
         }
       } else {
-        swal("Please switch to mainnet to buy Agod", "", "error");
+        // swal("Please switch to mainnet to buy Agod", "", "error");
+        setswitchToMainnet(true);
       }
     } else {
-      swal(
-        "",
-        "Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!",
-        "error"
-      );
+      // swal(
+      //   "",
+      //   "Please install an Ethereum-compatible browser or extension like MetaMask to use this dApp!",
+      //   "error"
+      // );
+      setEthereumCompatibleBrowser(true);
     }
   }
 
