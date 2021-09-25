@@ -5,7 +5,13 @@ import Mamba from "../../assets/images/Mamba.png";
 
 import Bnb from "../../assets/images/logo.png";
 
-const Index = ({ icoPrice = 0, account, buy, bnbBalance = 0 }) => {
+const Index = ({
+  icoPrice = 0,
+  account,
+  buy,
+  bnbBalance = 0,
+  userTokenBalance,
+}) => {
   const [bnb, setBnb] = useState("");
   const [mamba, setMamba] = useState("");
   const bnbHandler = (e) => {
@@ -47,7 +53,7 @@ const Index = ({ icoPrice = 0, account, buy, bnbBalance = 0 }) => {
             name="MAMBA"
             value={mamba}
             handler={mambaHandler}
-            balance={0}
+            balance={userTokenBalance}
           />
           <span className="block text-xs mt-2 text-gray-500 text-center">
             1 BNB = {icoPrice} MAMBA

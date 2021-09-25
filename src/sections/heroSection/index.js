@@ -10,6 +10,7 @@ const Index = ({
   tokenSold,
   bnbBalance,
   icoPrice,
+  userTokenBalance,
 }) => {
   const difference = +new moment("2021-10-17 00:00:00").utc() - +new Date();
 
@@ -49,6 +50,7 @@ const Index = ({
             account={account}
             buy={buy}
             bnbBalance={bnbBalance}
+            userTokenBalance={userTokenBalance}
           />
         </div>
       </div>

@@ -1,7 +1,6 @@
 import "./style.css";
 
 const Timer = ({ days, hours, minutes, seconds }) => {
-  console.log(hours.toString().padStart(2));
   return (
     <div className="border-2 border-primary py-2 w-full  rounded-lg dark:text-gray-50">
       <h6 className="text-center text-md relative pb-3">ICO ends in</h6>

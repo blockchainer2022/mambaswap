@@ -13,7 +13,9 @@ function App() {
   const [price, setPrice] = useState(0);
   const [bnbBalance, setBnbBalance] = useState(0);
   const [icoPrice, setIcoPrice] = useState(0);
-
+  const [totalSupply, setTotalSupply] = useState(0);
+  const [tokenSold, setTokenSold] = useState(0);
+  const [userTokenBalance, setUserTokenBalance] = useState(0);
   //FOR POPUP
   const [accessAccountDenied, setAccessAccountDenied] = useState(false);
   const [installEthereum, setInstallEthereum] = useState(false);
@@ -26,11 +28,6 @@ function App() {
     useState(false);
   const [mintingInProgress, setMintingInProgress] = useState(false);
   const [confirmTransaction, setConfirmTransaction] = useState(false);
-
-  useEffect(() => {
-    loadWeb3();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   async function loadWeb3() {
     if (window.ethereum) {
@@ -64,6 +61,10 @@ function App() {
       // );
     }
   }
+  useEffect(() => {
+    loadWeb3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const loadBlockchainData = async () => {
     const contract = new window.web3.eth.Contract(contractAbi, contractAddress);
@@ -79,12 +80,36 @@ function App() {
         type: "success",
         position: toast.POSITION.BOTTOM_CENTER,
       });
+      const totalSupply = await contract.methods.getTokenSupply().call();
+      const finalTotalSupply = await window.web3.utils.fromWei(
+        totalSupply,
+        "ether"
+      );
+      // console.log("totalSupply:", finalTotalSupply);
+      setTotalSupply(finalTotalSupply);
 
       const price = await contract.methods.getICOPrice().call();
       setPrice(price);
-      const convertedICOPrice = Web3.utils.fromWei(price);
+
+      const convertedICOPrice = await Web3.utils.fromWei(price);
       setIcoPrice(convertedICOPrice);
-      console.log("icoprice:", icoPrice);
+      // console.log("icoprice:", convertedICOPrice);
+      const tokenSold = await contract.methods.tokenSold().call();
+      const finalTokenSold = await window.web3.utils.fromWei(
+        tokenSold,
+        "ether"
+      );
+      // console.log("tokenSold:", finalTokenSold);
+      setTokenSold(finalTokenSold);
+      const tokenBalance = await contract.methods
+        .getUserTokenBalance()
+        .call({ from: account });
+      const finalTokenBalance = window.web3.utils.fromWei(
+        tokenBalance,
+        "ether"
+      );
+      console.log("User Token Balance:", finalTokenBalance);
+      setUserTokenBalance(finalTokenBalance);
     } else {
       toast("Please connect to main net", {
         type: "error",
@@ -192,6 +217,9 @@ function App() {
         bnbBalance={bnbBalance}
         buy={buy}
         icoPrice={icoPrice}
+        totalSupply={totalSupply}
+        tokenSold={tokenSold}
+        userTokenBalance={userTokenBalance}
       />
       <InformationModal
         open={accessAccountDenied}
@@ -209,7 +237,7 @@ function App() {
         open={nftMinted}
         onClose={setNftMinted}
         title="Mint Successful"
-        text="NFT Purchased successfully! It will be revealed in 24 hours"
+        text="You have successfully Swapped BNBs with MAMBAs"
       />
       <InformationModal
         open={nftMinting}
@@ -244,7 +272,7 @@ function App() {
       <ConfirmationLoadingPopup
         open={confirmTransaction}
         title="Confirm Transaction"
-        message="Confirm transaction to Buy the NFT"
+        message="Confirm transaction to swap the BNBs with MAMBAs"
       />
       <ConfirmationLoadingPopup
         open={mintingInProgress}

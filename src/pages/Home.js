@@ -8,10 +8,11 @@ const Home = ({
   account,
   buy,
   totalSupply,
-  displayPrice,
+  tokenSold,
   loadWeb3,
   icoPrice,
   bnbBalance,
+  userTokenBalance,
 }) => {
   return (
     <div>
@@ -20,9 +21,10 @@ const Home = ({
         account={account}
         buy={buy}
         totalSupply={totalSupply}
-        displayPrice={displayPrice}
         icoPrice={icoPrice}
         bnbBalance={bnbBalance}
+        tokenSold={tokenSold}
+        userTokenBalance={userTokenBalance}
       />
     </div>
   );
