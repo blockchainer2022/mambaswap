@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 import { InformationModal, ConfirmationLoadingPopup } from "./components";
-
+import axios from "axios";
 function App() {
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState(null);
@@ -81,8 +81,8 @@ function App() {
         type: "success",
         position: toast.POSITION.BOTTOM_CENTER,
       });
-      const totalSupply = await contract.methods.getTokenSupply().call();
-      const finalTotalSupply = window.web3.utils.fromWei(totalSupply, "ether");
+      const totalsupply = await contract.methods.getTokenSupply().call();
+      const finalTotalSupply = window.web3.utils.fromWei(totalsupply, "ether");
       // console.log("totalSupply:", finalTotalSupply);
       setTotalSupply(finalTotalSupply);
 
@@ -92,10 +92,26 @@ function App() {
       const convertedICOPrice = Web3.utils.fromWei(price);
       setIcoPrice(convertedICOPrice);
       // console.log("icoprice:", convertedICOPrice);
-      const tokenSold = await contract.methods.tokenSold().call();
-      const finalTokenSold = window.web3.utils.fromWei(tokenSold, "ether");
+      const tokensold = await contract.methods.tokenSold().call();
+      const finalTokenSold = window.web3.utils.fromWei(tokensold, "ether");
       // console.log("tokenSold:", finalTokenSold);
       setTokenSold(finalTokenSold);
+      const postTokens = async () => {
+        try {
+          const response = await axios.post(
+            "https://defi.mobiwebsolutionz.com/api/mamba/update.php",
+            {
+              total_supply: finalTotalSupply,
+              total_sold: finalTokenSold,
+            }
+          );
+          console.log(response);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      postTokens();
       const tokenBalance = await contract.methods
         .getUserTokenBalance()
         .call({ from: account });
@@ -139,6 +155,30 @@ function App() {
       window.location.reload();
     });
   };
+
+  // const data = {
+  //   total_supply: "10000",
+  //   total_sold: "100",
+  // };
+
+  // useEffect(() => {
+  //   const postTokens = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         "https://defi.mobiwebsolutionz.com/api/mamba/update.php",
+  //         {
+  //           total_supply: totalSupply,
+  //           total_sold: tokenSold,
+  //         }
+  //       );
+  //       console.log(response);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   postTokens();
+  // }, []);
 
   async function buy(buyAmount) {
     if (contract) {
