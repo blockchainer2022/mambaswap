@@ -6,8 +6,8 @@ import Mamba from "../../assets/images/Mamba.png";
 import Bnb from "../../assets/images/logo.png";
 
 const Index = ({ icoPrice = 0, account, buy, bnbBalance = 0 }) => {
-  const [bnb, setBnb] = useState(0);
-  const [mamba, setMamba] = useState(0);
+  const [bnb, setBnb] = useState("");
+  const [mamba, setMamba] = useState("");
   const bnbHandler = (e) => {
     setBnb(e.target.value);
     setMamba(icoPrice * e.target.value);
@@ -20,7 +20,7 @@ const Index = ({ icoPrice = 0, account, buy, bnbBalance = 0 }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (account) {
-      buy(bnb);
+      buy(Number(bnb));
     }
   };
   return (
@@ -54,7 +54,7 @@ const Index = ({ icoPrice = 0, account, buy, bnbBalance = 0 }) => {
           </span>
           <div className="mt-8">
             <Button secondary={true}>
-              {account ? "Buy Mamba" : "Connect Wallet"}
+              {account ? "Swap" : "Connect Wallet"}
             </Button>
           </div>
         </div>
@@ -89,7 +89,7 @@ const Field = ({
         onChange={handler}
       />
       <div className="currency">
-        <img src={icon} alt="" className="w-5 mr-2" />
+        <img src={icon} alt="" className="w-6 mr-2" />
         <span className="text-xs uppercase dark:text-gray-50">{name}</span>
       </div>
     </div>

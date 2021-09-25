@@ -24,7 +24,7 @@ const Index = ({ value = 20, days = 20, totalSupply = 0, tokenSold = 0 }) => {
         ></div>
       </div>
       <div className="flex justify-between items-center">
-        <span>softcap in {days} days</span>
+        <span>softcap </span>
         <span>Hardcap</span>
       </div>
     </div>
