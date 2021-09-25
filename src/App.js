@@ -81,24 +81,18 @@ function App() {
         position: toast.POSITION.BOTTOM_CENTER,
       });
       const totalSupply = await contract.methods.getTokenSupply().call();
-      const finalTotalSupply = await window.web3.utils.fromWei(
-        totalSupply,
-        "ether"
-      );
+      const finalTotalSupply = window.web3.utils.fromWei(totalSupply, "ether");
       // console.log("totalSupply:", finalTotalSupply);
       setTotalSupply(finalTotalSupply);
 
       const price = await contract.methods.getICOPrice().call();
       setPrice(price);
 
-      const convertedICOPrice = await Web3.utils.fromWei(price);
+      const convertedICOPrice = Web3.utils.fromWei(price);
       setIcoPrice(convertedICOPrice);
       // console.log("icoprice:", convertedICOPrice);
       const tokenSold = await contract.methods.tokenSold().call();
-      const finalTokenSold = await window.web3.utils.fromWei(
-        tokenSold,
-        "ether"
-      );
+      const finalTokenSold = window.web3.utils.fromWei(tokenSold, "ether");
       // console.log("tokenSold:", finalTokenSold);
       setTokenSold(finalTokenSold);
       const tokenBalance = await contract.methods
@@ -108,7 +102,7 @@ function App() {
         tokenBalance,
         "ether"
       );
-      console.log("User Token Balance:", finalTokenBalance);
+      // console.log("User Token Balance:", finalTokenBalance);
       setUserTokenBalance(finalTokenBalance);
     } else {
       toast("Please connect to main net", {
