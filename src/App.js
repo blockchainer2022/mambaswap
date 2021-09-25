@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 import { InformationModal, ConfirmationLoadingPopup } from "./components";
-// import axios from "axios";
+
 function App() {
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState(null);
@@ -139,19 +139,6 @@ function App() {
       window.location.reload();
     });
   };
-
-  // const data = {
-  //   total_supply: "10000",
-  //   total_sold: "100",
-  // };
-
-  // useEffect(() => {
-  //   const postTokens = async () => {
-  //     await axios.post(
-  //       "https://defi.mobiwebsolutionz.com/api/mamba/update.php"
-  //     );
-  //   };
-  // }, []);
 
   async function buy(buyAmount) {
     if (contract) {
