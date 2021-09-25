@@ -98,6 +98,8 @@ function App() {
       const tokenBalance = await contract.methods
         .getUserTokenBalance()
         .call({ from: account });
+      console.log("User Token Balance without convert:", tokenBalance);
+
       const finalTokenBalance = await window.web3.utils.fromWei(
         tokenBalance,
         "ether"

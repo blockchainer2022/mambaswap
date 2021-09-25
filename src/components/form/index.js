@@ -60,7 +60,7 @@ const Index = ({
           </span>
           <div className="mt-8">
             <Button secondary={true}>
-              {account ? "Swap" : "Connect Wallet"}
+              {account ? "Swap To Mamba" : "Connect Wallet"}
             </Button>
           </div>
         </div>
