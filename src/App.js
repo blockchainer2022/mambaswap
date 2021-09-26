@@ -11,6 +11,7 @@ function App() {
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [price, setPrice] = useState(0);
   const [bnbBalance, setBnbBalance] = useState(0);
   const [icoPrice, setIcoPrice] = useState(0);
@@ -44,14 +45,14 @@ function App() {
 
         setAccount(accounts[0]);
 
-        console.log("account:", account);
+        // console.log("account:", account);
 
         const balance = await window.web3.eth.getBalance(accounts[0]);
         const balance_Eth = window.web3.utils.fromWei(balance, "ether");
-        console.log("balance:", balance);
-        console.log("balance_Eth:", balance_Eth);
+        // console.log("balance:", balance);
+        // console.log("balance_Eth:", balance_Eth);
         setBnbBalance(balance_Eth);
-        console.log(bnbBalance);
+        // console.log(bnbBalance);
       } catch (error) {
         if (error.code === 4001) {
           // swal("Request to access account denied!", "", "error");
@@ -120,13 +121,13 @@ function App() {
       const tokenBalance = await contract.methods
         .getUserTokenBalance()
         .call({ from: account });
-      console.log("User Token Balance without convert:", tokenBalance);
+      // console.log("User Token Balance without convert:", tokenBalance);
 
       const finalTokenBalance = await window.web3.utils.fromWei(
         tokenBalance,
         "ether"
       );
-      console.log("User Token Balance:", finalTokenBalance);
+      // console.log("User Token Balance:", finalTokenBalance);
       setUserTokenBalance(finalTokenBalance);
     } else {
       toast("Please connect to main net", {
@@ -161,30 +162,6 @@ function App() {
     });
   };
 
-  // const data = {
-  //   total_supply: "10000",
-  //   total_sold: "100",
-  // };
-
-  // useEffect(() => {
-  //   const postTokens = async () => {
-  //     try {
-  //       const response = await axios.post(
-  //         "https://defi.mobiwebsolutionz.com/api/mamba/update.php",
-  //         {
-  //           total_supply: totalSupply,
-  //           total_sold: tokenSold,
-  //         }
-  //       );
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   postTokens();
-  // }, []);
-
   async function buy(buyAmount) {
     if (contract) {
       if (chainId === 97) {
@@ -192,15 +169,16 @@ function App() {
           swal("Amount should not be 0", "", "info");
         } else {
           setConfirmTransaction(true);
-          const finalPrice = Number(price) * buyAmount;
-          const finalAmount = window.web3.utils.toWei(
+          //const finalPrice = Number(price) * buyAmount;
+
+          const finalPrice = window.web3.utils.toWei(
             buyAmount.toString(),
             "ether"
           );
           console.log("finalPrice:", finalPrice);
-          console.log("finalAmount:", finalAmount);
+
           await contract.methods
-            .buy(finalAmount)
+            .buy()
             .send({ from: account, value: finalPrice })
             .on("transactionHash", function () {
               // swal({

@@ -26,9 +26,10 @@ const Index = ({
   const submitHandler = (e) => {
     e.preventDefault();
     if (account) {
-      buy(Number(mamba));
+      buy(Number(bnb));
     }
   };
+
   return (
     <div
       className="w-full  dark:text-gray-50 dark:bg-dark rounded-xl"

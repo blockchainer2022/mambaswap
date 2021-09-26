@@ -1,6 +1,7 @@
 import React from "react";
-import "./style.css";
 
+import { withStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
 const Index = React.memo(({ totalSupply = 0, tokenSold = 0 }) => {
   const total = new Intl.NumberFormat("en-GB", {
     notation: "compact",
@@ -12,21 +13,32 @@ const Index = React.memo(({ totalSupply = 0, tokenSold = 0 }) => {
   }).format(tokenSold);
 
   const value = (Number(tokenSold) * 100) / Number(totalSupply);
-  console.log(Math.floor(value) + 1);
 
+  const BorderLinearProgress = withStyles((theme) => ({
+    root: {
+      height: 10,
+      borderRadius: 5,
+    },
+    colorPrimary: {
+      backgroundColor: "lightgray",
+    },
+    bar: {
+      borderRadius: 5,
+      backgroundColor: "#700da8",
+    },
+  }))(LinearProgress);
   return (
     <div className="my-4 mb-6 dark:text-gray-50 capitalize">
-      <div className="flex justify-between items-center">
+      <div className="flex mb-1 justify-between items-center">
         <span>{total2}</span>
         <span>{total}</span>
       </div>
-      <div className="progress my-1 border-2 border-gray-500">
-        <div
-          className="progress-value  bg-primary "
-          style={{ width: value ? Math.floor(value) + 1 + "%" : "1%" }}
-        ></div>
-      </div>
-      <div className="flex justify-between items-center">
+
+      <BorderLinearProgress
+        variant="determinate"
+        value={value && value > 1 ? Math.floor(value) + 1 : 2}
+      />
+      <div className="flex mt-1 justify-between items-center">
         <span>softcap </span>
         <span>Hardcap</span>
       </div>
