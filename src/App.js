@@ -9,7 +9,7 @@ import { InformationModal, ConfirmationLoadingPopup } from "./components";
 import axios from "axios";
 function App() {
   const [chainId, setChainId] = useState(null);
-  const [account, setAccount] = useState(null);
+  const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
   const [price, setPrice] = useState(0);
   const [bnbBalance, setBnbBalance] = useState(0);
@@ -40,7 +40,11 @@ function App() {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        setAccount(accounts[0]);
+        if (accounts.length !== 0) {
+          setAccount(accounts[0]);
+        }
+        console.log("account:", account);
+
         const balance = await window.web3.eth.getBalance(accounts[0]);
         const balance_Eth = window.web3.utils.fromWei(balance, "ether");
         console.log("balance:", balance);
@@ -65,7 +69,7 @@ function App() {
   useEffect(() => {
     loadWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [account]);
 
   const loadBlockchainData = async () => {
     const contract = new window.web3.eth.Contract(contractAbi, contractAddress);
