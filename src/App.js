@@ -29,6 +29,7 @@ function App() {
     useState(false);
   const [mintingInProgress, setMintingInProgress] = useState(false);
   const [confirmTransaction, setConfirmTransaction] = useState(false);
+  // const [buyConfirm, setBuyConfirm] = useState(false);
 
   async function loadWeb3() {
     if (window.ethereum) {
@@ -40,9 +41,9 @@ function App() {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        if (accounts.length !== 0) {
-          setAccount(accounts[0]);
-        }
+
+        setAccount(accounts[0]);
+
         console.log("account:", account);
 
         const balance = await window.web3.eth.getBalance(accounts[0]);
@@ -188,7 +189,7 @@ function App() {
     if (contract) {
       if (chainId === 97) {
         if (buyAmount === 0) {
-          swal("Atleast 1 Agod should be purchased", "", "info");
+          swal("Amount should not be 0", "", "info");
         } else {
           setConfirmTransaction(true);
           const finalPrice = Number(price) * buyAmount;
@@ -222,6 +223,7 @@ function App() {
               setNftMinted(true);
               setConfirmTransaction(false);
               setMintingInProgress(false);
+              // setBuyConfirm(true);
             })
             .on("error", function (error, receipt) {
               if (error.code === 4001) {
