@@ -83,7 +83,7 @@ function App() {
     // Please connect to main net
 
     if (chainId === 97) {
-      toast(`you are connected to main net`, {
+      toast(`You are connected to main net`, {
         type: "success",
         position: toast.POSITION.BOTTOM_CENTER,
       });
