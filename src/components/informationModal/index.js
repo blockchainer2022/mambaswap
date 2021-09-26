@@ -2,6 +2,10 @@ import React from "react";
 import "./selectWalletPopup.css";
 
 const InformationPopup = ({ open, onClose, title, text }) => {
+  const confirmHandler = () => {
+    onClose(false);
+    window.location.reload();
+  };
   return (
     <>
       <aside
@@ -92,7 +96,7 @@ const InformationPopup = ({ open, onClose, title, text }) => {
             >
               <button
                 className="bn-onboard-custom bn-onboard-prepare-button svelte-fnc3e1 bn-onboard-prepare-button-center bn-onboard-dark-mode-link bn-onboard-dark-mode-background-hover"
-                onClick={() => onClose(false)}
+                onClick={confirmHandler}
               >
                 OK
               </button>{" "}

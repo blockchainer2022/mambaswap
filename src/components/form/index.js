@@ -15,12 +15,18 @@ const Index = ({
   const [bnb, setBnb] = useState("");
   const [mamba, setMamba] = useState("");
   const bnbHandler = (e) => {
-    setBnb(e.target.value);
-    setMamba(icoPrice * e.target.value);
+    const reg = /^\d*\.?\d*$/;
+    if (reg.test(e.target.value)) {
+      setBnb(e.target.value);
+      setMamba(icoPrice * e.target.value);
+    }
   };
   const mambaHandler = (e) => {
-    setMamba(e.target.value);
-    setBnb(e.target.value / icoPrice);
+    const reg = /^\d*\.?\d*$/;
+    if (reg.test(e.target.value)) {
+      setMamba(e.target.value);
+      setBnb(e.target.value / icoPrice);
+    }
   };
 
   const submitHandler = (e) => {
@@ -79,26 +85,28 @@ const Field = ({
   balance,
   value,
   handler,
-}) => (
-  <div className="">
-    <div className="text-sm flex justify-between items-center mb-1">
-      <span className="font-medium">{label1}</span>
-      <span className=" text-xs dark:text-gray-400">
-        Available balance : {Number(balance).toFixed(5)}
-      </span>
-    </div>
-    <div className="h-14 w-full rounded-xl field">
-      <input
-        type="text"
-        className="h-full w-full rounded-xl dark:bg-mainDark bg-transparent border-2 border-gray-400"
-        placeholder="0"
-        value={value}
-        onChange={handler}
-      />
-      <div className="currency">
-        <img src={icon} alt="" className="w-6 mr-2" />
-        <span className="text-xs uppercase dark:text-gray-50">{name}</span>
+}) => {
+  return (
+    <div className="">
+      <div className="text-sm flex justify-between items-center mb-1">
+        <span className="font-medium">{label1}</span>
+        <span className=" text-xs dark:text-gray-400">
+          Available balance : {Number(balance).toFixed(5)}
+        </span>
+      </div>
+      <div className="h-14 w-full rounded-xl field">
+        <input
+          type="text"
+          className="h-full w-full rounded-xl dark:bg-mainDark bg-transparent border-2 border-gray-400"
+          placeholder="0"
+          value={value}
+          onChange={handler}
+        />
+        <div className="currency">
+          <img src={icon} alt="" className="w-6 mr-2" />
+          <span className="text-xs uppercase dark:text-gray-50">{name}</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
