@@ -39,8 +39,8 @@ const Index = React.memo(({ totalSupply = 0, tokenSold = 0 }) => {
         value={value && value > 1 ? Math.floor(value) + 1 : 2}
       />
       <div className="flex mt-1 justify-between items-center">
-        <span>softcap </span>
-        <span>Hardcap</span>
+        <span>Total Sold</span>
+        <span>ICO Target</span>
       </div>
     </div>
   );

@@ -82,7 +82,7 @@ function App() {
     // you are connected to main net
     // Please connect to main net
 
-    if (chainId === 97) {
+    if (chainId === 97 && account) {
       toast(`You are connected to main net`, {
         type: "success",
         position: toast.POSITION.BOTTOM_CENTER,
@@ -130,6 +130,7 @@ function App() {
       // console.log("User Token Balance:", finalTokenBalance);
       setUserTokenBalance(finalTokenBalance);
     } else {
+      // if ()
       toast("Please connect to main net", {
         type: "error",
         position: toast.POSITION.BOTTOM_CENTER,
