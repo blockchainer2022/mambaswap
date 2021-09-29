@@ -1,10 +1,12 @@
 import React from "react";
 import "./selectWalletPopup.css";
 
-const InformationPopup = ({ open, onClose, title, text }) => {
+const InformationPopup = ({ open, onClose, title, text, mint = false }) => {
   const confirmHandler = () => {
     onClose(false);
-    window.location.reload();
+    if (mint) {
+      window.location.reload();
+    }
   };
   return (
     <>

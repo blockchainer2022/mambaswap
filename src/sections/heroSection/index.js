@@ -44,7 +44,11 @@ const Index = ({
             minutes={minutes}
             seconds={seconds}
           />
-          <Progress totalSupply={totalSupply} tokenSold={tokenSold} />
+          <Progress
+            totalSupply={totalSupply}
+            tokenSold={tokenSold}
+            account={account}
+          />
           <Form
             icoPrice={icoPrice}
             account={account}

@@ -260,6 +260,7 @@ function App() {
         onClose={setNftMinted}
         title="Swap Successful"
         text="You have successfully Swapped BNBs with MAMBAs"
+        mint={true}
       />
       <InformationModal
         open={nftMinting}
