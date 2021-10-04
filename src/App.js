@@ -7,6 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 import { InformationModal, ConfirmationLoadingPopup } from "./components";
 import axios from "axios";
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 function App() {
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState("");
@@ -32,9 +35,62 @@ function App() {
   const [confirmTransaction, setConfirmTransaction] = useState(false);
   // const [buyConfirm, setBuyConfirm] = useState(false);
 
+  const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider, // required
+      options: {
+        infuraId: "9a29c26a16574eb1b8b8959e8aba86ed", // required
+      },
+    },
+  };
+
+  const web3Modal = new Web3Modal({
+    providerOptions, // required
+  });
+  async function loadWalleConnect() {
+    //alert('Hello');
+    const provider = await web3Modal.connectTo("walletconnect");
+    const web3 = new Web3(provider);
+
+    const chainId = await web3.eth.getChainId();
+    console.log("chainId:", chainId);
+
+    const contract = new web3.eth.Contract(contractAbi, contractAddress);
+    console.log(contract);
+    // const totalsupply = await contract.methods.getTokenSupply().call();
+    // const finalTotalSupply = window.web3.utils.fromWei(totalsupply, "ether");
+    // console.log("totalSupply:", finalTotalSupply);
+
+    // setTotalSupply(finalTotalSupply);
+    const accounts = await web3.eth.getAccounts();
+    setAccount(accounts[0]);
+    // console.log(accounts[0]);
+    provider.on("accountsChanged", (accounts) => {
+      console.log("account:", accounts[0]);
+    });
+
+    // Subscribe to chainId change
+    provider.on("chainChanged", (chainId) => {
+      console.log("chainid", chainId);
+    });
+
+    // Subscribe to provider connection
+    provider.on("connect", (info) => {
+      console.log("info", info);
+    });
+
+    // Subscribe to provider disconnection
+    provider.on("disconnect", (error) => {
+      console.log(error);
+    });
+  }
+
+  //for MetaMask
+
   async function loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
+
       try {
         loadBlockchainData();
         getCurrentAddressConnected();
@@ -69,12 +125,12 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    if (account) {
-      loadWeb3();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account]);
+  // useEffect(() => {
+  //   if (account) {
+  //     loadWeb3();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const loadBlockchainData = async () => {
     const contract = new window.web3.eth.Contract(contractAbi, contractAddress);
@@ -245,6 +301,7 @@ function App() {
         tokenSold={tokenSold}
         userTokenBalance={userTokenBalance}
         loadWeb3={loadWeb3}
+        loadWalleConnect={loadWalleConnect}
       />
       <InformationModal
         open={accessAccountDenied}

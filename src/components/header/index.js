@@ -7,7 +7,7 @@ import Button from "../button";
 import { ThemeContext } from "../../contexts/themeContext";
 import WalletPopup from "../walletpopup";
 
-const Index = ({ account, loadWeb3 }) => {
+const Index = ({ account, loadWeb3, loadWalleConnect }) => {
   const [open, setOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
@@ -105,6 +105,7 @@ const Index = ({ account, loadWeb3 }) => {
         }
         metaMaskHandler={loadWeb3}
         account={account}
+        loadWalleConnect={loadWalleConnect}
       />
     </header>
   );

@@ -13,10 +13,15 @@ const Home = ({
   icoPrice,
   bnbBalance,
   userTokenBalance,
+  loadWalleConnect,
 }) => {
   return (
     <div>
-      <Header account={account} loadWeb3={loadWeb3} />
+      <Header
+        account={account}
+        loadWeb3={loadWeb3}
+        loadWalleConnect={loadWalleConnect}
+      />
       <HeroSection
         account={account}
         buy={buy}
@@ -25,6 +30,7 @@ const Home = ({
         bnbBalance={bnbBalance}
         tokenSold={tokenSold}
         userTokenBalance={userTokenBalance}
+        loadWalleConnect={loadWalleConnect}
       />
     </div>
   );

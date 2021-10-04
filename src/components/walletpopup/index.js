@@ -2,14 +2,22 @@ import React from "react";
 import "./selectWalletPopup.css";
 import Metamask from "../../assets/images/metamask.png";
 
-const Index = ({ open, onClose, title, text, metaMaskHandler, account }) => {
+const Index = ({
+  open,
+  onClose,
+  title,
+  text,
+  metaMaskHandler,
+  account,
+  loadWalleConnect,
+}) => {
   const metaHandler = () => {
     metaMaskHandler();
     onClose((prev) => !prev);
   };
 
   const walletHandler = () => {
-    alert("Hello I am Working😊");
+    loadWalleConnect();
     onClose((prev) => !prev);
   };
 
