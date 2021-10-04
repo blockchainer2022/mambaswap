@@ -68,8 +68,11 @@ function App() {
       // );
     }
   }
+
   useEffect(() => {
-    loadWeb3();
+    if (account) {
+      loadWeb3();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
@@ -241,6 +244,7 @@ function App() {
         totalSupply={totalSupply}
         tokenSold={tokenSold}
         userTokenBalance={userTokenBalance}
+        loadWeb3={loadWeb3}
       />
       <InformationModal
         open={accessAccountDenied}
