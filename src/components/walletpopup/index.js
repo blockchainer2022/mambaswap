@@ -7,6 +7,12 @@ const Index = ({ open, onClose, title, text, metaMaskHandler }) => {
     metaMaskHandler();
     onClose((prev) => !prev);
   };
+
+  const walletHandler = () => {
+    alert("Hello I am Working😊");
+    onClose((prev) => !prev);
+  };
+
   return (
     <>
       <aside
@@ -43,9 +49,9 @@ const Index = ({ open, onClose, title, text, metaMaskHandler }) => {
                 <img src={Metamask} alt="" />
                 <span>Metamask</span>
               </button>
-              <button>
+              <button onClick={walletHandler}>
                 <WalletConnectImage />
-                <span>Metamask</span>
+                <span>Wallet Connect</span>
               </button>
             </div>
 
