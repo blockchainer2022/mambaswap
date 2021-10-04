@@ -67,7 +67,14 @@ const Index = ({ open, onClose, title, text, metaMaskHandler, account }) => {
               style={{ justifyContent: "center", marginTop: "30px" }}
             >
               {account ? (
-                <button onClick={disConnect}>Disconnect</button>
+                <div className="flex flex-col sm:flex-row items-center">
+                  <button onClick={disConnect} className="mt-4">
+                    Yes
+                  </button>
+                  <button onClick={disConnect} className="mt-4 sm:ml-4">
+                    No
+                  </button>
+                </div>
               ) : null}
             </footer>
           </section>
