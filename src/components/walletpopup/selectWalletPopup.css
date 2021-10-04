@@ -243,4 +243,13 @@ h3.svelte-8i8o6j {
     width: 100%;
     margin: 10px 0;
   }
-} ;
+}
+
+footer button {
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin: 30px 0 20px 0;
+}
+footer button:hover {
+  background-color: #0e212a;
+}

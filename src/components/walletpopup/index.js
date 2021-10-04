@@ -2,13 +2,18 @@ import React from "react";
 import "./selectWalletPopup.css";
 import Metamask from "../../assets/images/metamask.png";
 
-const Index = ({ open, onClose, title, text, metaMaskHandler }) => {
+const Index = ({ open, onClose, title, text, metaMaskHandler, account }) => {
   const metaHandler = () => {
     metaMaskHandler();
     onClose((prev) => !prev);
   };
 
   const walletHandler = () => {
+    alert("Hello I am Working😊");
+    onClose((prev) => !prev);
+  };
+
+  const disConnect = () => {
     alert("Hello I am Working😊");
     onClose((prev) => !prev);
   };
@@ -44,21 +49,27 @@ const Index = ({ open, onClose, title, text, metaMaskHandler }) => {
             >
               {text}
             </p>
-            <div className="wallet-list">
-              <button onClick={metaHandler}>
-                <img src={Metamask} alt="" />
-                <span>Metamask</span>
-              </button>
-              <button onClick={walletHandler}>
-                <WalletConnectImage />
-                <span>Wallet Connect</span>
-              </button>
-            </div>
+            {!account ? (
+              <div className="wallet-list">
+                <button onClick={metaHandler}>
+                  <img src={Metamask} alt="" />
+                  <span>Metamask</span>
+                </button>
+                <button onClick={walletHandler}>
+                  <WalletConnectImage />
+                  <span>Wallet Connect</span>
+                </button>
+              </div>
+            ) : null}
 
             <footer
               className="bn-onboard-custom bn-onboard-modal-selected-wallet-footer svelte-mi6ahc"
               style={{ justifyContent: "center", marginTop: "30px" }}
-            ></footer>
+            >
+              {account ? (
+                <button onClick={disConnect}>Disconnect</button>
+              ) : null}
+            </footer>
           </section>
         </section>
       </aside>

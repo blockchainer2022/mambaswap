@@ -97,9 +97,14 @@ const Index = ({ account, loadWeb3 }) => {
       <WalletPopup
         open={walletOpen}
         onClose={setWalletOpen}
-        title="Select a Wallet"
-        text="Please select a wallet to connect to this dapp:"
+        title={account ? "Disconnect Wallet" : "Select a Wallet"}
+        text={
+          account
+            ? "Are you sure you want to disconnect?"
+            : "Please select a wallet to connect to this dapp:"
+        }
         metaMaskHandler={loadWeb3}
+        account={account}
       />
     </header>
   );
