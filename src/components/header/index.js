@@ -5,10 +5,11 @@ import Sun from "../../assets/images/Sun.svg";
 import Moon from "../../assets/images/Moon.svg";
 import Button from "../button";
 import { ThemeContext } from "../../contexts/themeContext";
+import WalletPopup from "../walletpopup";
 
 const Index = ({ account, loadWeb3 }) => {
   const [open, setOpen] = useState(false);
-
+  const [walletOpen, setWalletOpen] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
@@ -43,7 +44,7 @@ const Index = ({ account, loadWeb3 }) => {
         </button>
 
         <div className="ml-3">
-          <Button responsive onClick={() => loadWeb3()}>
+          <Button responsive onClick={() => setWalletOpen((prev) => !prev)}>
             {account
               ? account.slice(0, 8) + "..." + account.slice(account.length - 5)
               : "Connect Wallet"}
@@ -82,7 +83,7 @@ const Index = ({ account, loadWeb3 }) => {
               <a href="#faq">FAQ's</a>
             </li>
             <li className="p-2 text-sm">
-              <Button onClick={() => loadWeb3()}>
+              <Button onClick={() => setWalletOpen((prev) => !prev)}>
                 {account
                   ? account.slice(0, 8) +
                     "..." +
@@ -93,6 +94,13 @@ const Index = ({ account, loadWeb3 }) => {
           </ul>
         </div>
       </nav>
+      <WalletPopup
+        open={walletOpen}
+        onClose={setWalletOpen}
+        title="Select a Wallet"
+        text="Please select a wallet to connect to this dapp:"
+        metaMaskHandler={loadWeb3}
+      />
     </header>
   );
 };

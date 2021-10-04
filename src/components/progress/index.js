@@ -1,7 +1,7 @@
 import React from "react";
-
 import { withStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
+
 const Index = React.memo(
   ({ totalSupply = 0, tokenSold = 0, account = false }) => {
     const total = new Intl.NumberFormat("en-GB", {
