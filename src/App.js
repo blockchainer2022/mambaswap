@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Home from "./pages/Home";
 import Web3 from "web3";
 import { contractAbi, contractAddress } from "./config";
