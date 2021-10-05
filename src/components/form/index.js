@@ -28,7 +28,10 @@ const Index = ({
       setBnb(e.target.value / icoPrice);
     }
   };
-
+  const total2 = new Intl.NumberFormat("en-GB", {
+    notation: "compact",
+    compactDisplay: "short",
+  }).format(icoPrice);
   const submitHandler = (e) => {
     e.preventDefault();
     if (account) {
@@ -63,7 +66,7 @@ const Index = ({
             balance={userTokenBalance}
           />
           <span className="block text-xs mt-2 text-gray-500 text-center">
-            1 BNB = {icoPrice} MAMBA
+            1 BNB = {total2} MAMBA
           </span>
           <div className="mt-8">
             <Button secondary={true}>

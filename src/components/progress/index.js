@@ -7,12 +7,12 @@ const Index = React.memo(
     const total = new Intl.NumberFormat("en-GB", {
       notation: "compact",
       compactDisplay: "short",
-    }).format(totalSupply);
+    }).format(totalSupply / 100);
     const total2 = new Intl.NumberFormat("en-GB", {
       notation: "compact",
       compactDisplay: "short",
     }).format(tokenSold);
-
+    // console.log("TOTALSUPPLE", totalSupply / 100);
     const value = (Number(tokenSold) * 100) / Number(totalSupply);
 
     const BorderLinearProgress = withStyles((theme) => ({

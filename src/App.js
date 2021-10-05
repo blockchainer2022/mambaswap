@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import Web3 from "web3";
 import { contractAbi, contractAddress } from "./config";
@@ -125,12 +125,12 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   if (account) {
-  //     loadWeb3();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    if (account) {
+      loadWeb3();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account]);
 
   const loadBlockchainData = async () => {
     const contract = new window.web3.eth.Contract(contractAbi, contractAddress);
@@ -147,15 +147,16 @@ function App() {
         position: toast.POSITION.BOTTOM_CENTER,
       });
       const totalsupply = await contract.methods.getTokenSupply().call();
-      const finalTotalSupply = window.web3.utils.fromWei(totalsupply, "ether");
-      // console.log("totalSupply:", finalTotalSupply);
-      setTotalSupply(finalTotalSupply);
+      // const finalTotalSupply = window.web3.utils.fromWei(totalsupply, "ether");
+      // console.log("totalSupply:", totalsupply);
+      setTotalSupply(totalsupply);
+      console.log(totalsupply);
 
       const price = await contract.methods.getICOPrice().call();
       setPrice(price);
 
-      const convertedICOPrice = Web3.utils.fromWei(price);
-      setIcoPrice(convertedICOPrice);
+      // const convertedICOPrice = Web3.utils.fromWei(price);
+      setIcoPrice(price);
       // console.log("icoprice:", convertedICOPrice);
       const tokensold = await contract.methods.tokenSold().call();
       const finalTokenSold = window.web3.utils.fromWei(tokensold, "ether");
@@ -166,7 +167,7 @@ function App() {
           const response = await axios.post(
             "https://defi.mobiwebsolutionz.com/api/mamba/update.php",
             {
-              total_supply: finalTotalSupply,
+              total_supply: totalsupply,
               total_sold: finalTokenSold,
             }
           );
