@@ -33,6 +33,8 @@ function App() {
     useState(false);
   const [mintingInProgress, setMintingInProgress] = useState(false);
   const [confirmTransaction, setConfirmTransaction] = useState(false);
+  const [lessValueWarn, setLessValueWarn] = useState(false);
+
   // const [buyConfirm, setBuyConfirm] = useState(false);
 
   const providerOptions = {
@@ -160,7 +162,7 @@ function App() {
       // console.log("icoprice:", convertedICOPrice);
       const tokensold = await contract.methods.tokenSold().call();
       const finalTokenSold = window.web3.utils.fromWei(tokensold, "ether");
-      // console.log("tokenSold:", finalTokenSold);
+      console.log("tokenSold:", finalTokenSold);
       setTokenSold(finalTokenSold);
       const postTokens = async () => {
         try {
@@ -226,7 +228,7 @@ function App() {
     if (contract) {
       if (chainId === 97) {
         if (buyAmount === 0) {
-          swal("Amount should not be 0", "", "info");
+          setLessValueWarn(true);
         } else {
           setConfirmTransaction(true);
           //const finalPrice = Number(price) * buyAmount;
@@ -266,6 +268,7 @@ function App() {
             .on("error", function (error, receipt) {
               if (error.code === 4001) {
                 // swal("Transaction Rejected!", "", "error");
+                setNftMinted(false);
                 setTransactionRejected(true);
                 setConfirmTransaction(false);
                 setMintingInProgress(false);
@@ -274,6 +277,7 @@ function App() {
                 setTransactionFailed(true);
                 setConfirmTransaction(false);
                 setMintingInProgress(false);
+                setNftMinted(false);
               }
             });
         }
@@ -303,6 +307,12 @@ function App() {
         userTokenBalance={userTokenBalance}
         loadWeb3={loadWeb3}
         loadWalleConnect={loadWalleConnect}
+      />
+      <InformationModal
+        open={lessValueWarn}
+        onClose={setLessValueWarn}
+        title="Alert!"
+        text="Amount Should Not be 0"
       />
       <InformationModal
         open={accessAccountDenied}
