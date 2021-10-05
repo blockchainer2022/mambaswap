@@ -31,6 +31,7 @@ const Home = ({
         tokenSold={tokenSold}
         userTokenBalance={userTokenBalance}
         loadWalleConnect={loadWalleConnect}
+        loadWeb3={loadWeb3}
       />
     </div>
   );

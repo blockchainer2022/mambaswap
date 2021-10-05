@@ -131,6 +131,9 @@ function App() {
     if (localAccount === "metamask") {
       loadWeb3();
     }
+    if (localAccount === "walletconnect") {
+      loadWalleConnect();
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);

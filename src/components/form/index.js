@@ -2,18 +2,20 @@ import { useState } from "react";
 import Button from "../button";
 import "./style.css";
 import Mamba from "../../assets/images/Mamba.png";
-
 import Bnb from "../../assets/images/logo.png";
-
+import WalletPopup from "../walletpopup";
 const Index = ({
   icoPrice = 0,
   account,
   buy,
   bnbBalance = 0,
   userTokenBalance,
+  loadWeb3,
+  loadWalleConnect,
 }) => {
   const [bnb, setBnb] = useState("");
   const [mamba, setMamba] = useState("");
+  const [walletOpen, setWalletOpen] = useState(false);
   const bnbHandler = (e) => {
     const reg = /^\d*\.?\d*$/;
     if (reg.test(e.target.value)) {
@@ -34,48 +36,66 @@ const Index = ({
   }).format(icoPrice);
   const submitHandler = (e) => {
     e.preventDefault();
+    if (!account) {
+      setWalletOpen((prev) => !prev);
+    }
     if (account) {
       buy(Number(bnb));
     }
   };
 
   return (
-    <div
-      className="w-full  dark:text-gray-50 dark:bg-dark rounded-xl"
-      style={{ boxShadow: "0px 0px 6px 0px rgba(0,0,0,0.16)" }}
-    >
-      <p className="block text-sm font-medium py-3 px-5 uppercase border-b-2 border-gary-400 dark:border-gray-500 ">
-        Swap
-      </p>
-      <form
-        action=""
-        className="max-w-sm mx-auto px-4 pt-3 pb-6"
-        onSubmit={submitHandler}
+    <>
+      <div
+        className="w-full  dark:text-gray-50 dark:bg-dark rounded-xl"
+        style={{ boxShadow: "0px 0px 6px 0px rgba(0,0,0,0.16)" }}
       >
-        <div className="mt-4">
-          <Field value={bnb} handler={bnbHandler} balance={bnbBalance} />
-          <span className="block text-center text-base my-1">
-            <i className="fas fa-arrow-down"></i>
-          </span>
-          <Field
-            label1="Receive"
-            icon={Mamba}
-            name="MAMBA"
-            value={mamba}
-            handler={mambaHandler}
-            balance={userTokenBalance}
-          />
-          <span className="block text-xs mt-2 text-gray-500 text-center">
-            1 BNB = {total2} MAMBA
-          </span>
-          <div className="mt-8">
-            <Button secondary={true}>
-              {account ? "Swap To Mamba" : "Connect Wallet"}
-            </Button>
+        <p className="block text-sm font-medium py-3 px-5 uppercase border-b-2 border-gary-400 dark:border-gray-500 ">
+          Swap
+        </p>
+        <form
+          action=""
+          className="max-w-sm mx-auto px-4 pt-3 pb-6"
+          onSubmit={submitHandler}
+        >
+          <div className="mt-4">
+            <Field value={bnb} handler={bnbHandler} balance={bnbBalance} />
+            <span className="block text-center text-base my-1">
+              <i className="fas fa-arrow-down"></i>
+            </span>
+            <Field
+              label1="Receive"
+              icon={Mamba}
+              name="MAMBA"
+              value={mamba}
+              handler={mambaHandler}
+              balance={userTokenBalance}
+            />
+            <span className="block text-xs mt-2 text-gray-500 text-center">
+              1 BNB = {total2} MAMBA
+            </span>
+            <div className="mt-8">
+              <Button secondary={true}>
+                {account ? "Swap To Mamba" : "Connect Wallet"}
+              </Button>
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+      <WalletPopup
+        open={walletOpen}
+        onClose={setWalletOpen}
+        title={account ? "Disconnect Wallet" : "Select a Wallet"}
+        text={
+          account
+            ? "Are you sure you want to disconnect?"
+            : "Please select a wallet to connect to this dapp:"
+        }
+        metaMaskHandler={loadWeb3}
+        account={account}
+        loadWalleConnect={loadWalleConnect}
+      />
+    </>
   );
 };
 

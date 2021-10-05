@@ -18,12 +18,15 @@ const Index = ({
   };
 
   const walletHandler = () => {
+    localStorage.setItem("account", "walletconnect");
     loadWalleConnect();
     onClose((prev) => !prev);
   };
 
   const disConnect = () => {
-    alert("Hello I am Working😊");
+    // localStorage.setItem("account", "metamask");
+    localStorage.removeItem("account");
+    window.location.reload();
     onClose((prev) => !prev);
   };
 
@@ -80,7 +83,10 @@ const Index = ({
                   <button onClick={disConnect} className="mt-4">
                     Yes
                   </button>
-                  <button onClick={disConnect} className="mt-4 sm:ml-4">
+                  <button
+                    onClick={() => onClose((prev) => !prev)}
+                    className="mt-4 sm:ml-4"
+                  >
                     No
                   </button>
                 </div>
