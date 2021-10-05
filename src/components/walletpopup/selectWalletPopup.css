@@ -251,3 +251,24 @@ footer button {
 
   background-color: #0e212a;
 }
+
+.disabled {
+  background-color: transparent;
+  pointer-events: none;
+}
+.disabled div {
+  text-align: center;
+  flex-grow: 1;
+}
+.disabled div span {
+  display: inline-block;
+  margin-left: auto;
+  color: #b4b1b1;
+}
+.disabled div .soon {
+  font-size: 10px;
+  margin-left: 5px;
+  text-transform: capitalize;
+}
+/* .wallet-list .disabled:hover {
+  /* background-color: #5c5c5c; */

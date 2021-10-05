@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import "./selectWalletPopup.css";
 import Metamask from "../../assets/images/metamask.png";
@@ -67,9 +68,12 @@ const Index = ({
                   <img src={Metamask} alt="" />
                   <span>Metamask</span>
                 </button>
-                <button onClick={walletHandler}>
+                <button className="disabled">
                   <WalletConnectImage />
-                  <span>Wallet Connect</span>
+                  <div>
+                    <span className="text-xs">Wallet Connect</span>
+                    <span className="soon">(Coming Soon)</span>
+                  </div>
                 </button>
               </div>
             ) : null}
