@@ -12,6 +12,7 @@ const Index = ({
   loadWalleConnect,
 }) => {
   const metaHandler = () => {
+    localStorage.setItem("account", "metamask");
     metaMaskHandler();
     onClose((prev) => !prev);
   };

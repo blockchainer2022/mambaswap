@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InformationModal, ConfirmationLoadingPopup } from "./components";
 import axios from "axios";
-import Web3Modal from "web3modal";
+import Web3Modal, { local } from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 function App() {
@@ -89,6 +89,8 @@ function App() {
   //for MetaMask
 
   async function loadWeb3() {
+    // const localItems = localStorage.getItem("account");
+    // console.log(localItems);
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
 
@@ -160,7 +162,7 @@ function App() {
       setIcoPrice(price);
       // console.log("icoprice:", convertedICOPrice);
       const tokensold = await contract.methods.tokenSold().call();
-      const finalTokenSold = window.web3.utils.fromWei(tokensold, "ether");
+      // const finalTokenSold = window.web3.utils.fromWei(tokensold, "ether");
       console.log("tokenSold:", tokensold);
       setTokenSold(tokensold);
       const postTokens = async () => {
@@ -169,7 +171,7 @@ function App() {
             "https://defi.mobiwebsolutionz.com/api/mamba/update.php",
             {
               total_supply: totalsupply,
-              total_sold: finalTokenSold,
+              total_sold: tokensold,
             }
           );
           console.log(response);
@@ -214,12 +216,14 @@ function App() {
   const addAccountsAndChainListener = async () => {
     //this event will be emitted when the currently connected chain changes.
     window.ethereum.on("chainChanged", (_chainId) => {
-      window.location.reload();
+      // window.location.reload();
+      loadWeb3();
     });
 
     // this event will be emitted whenever the user's exposed account address changes.
     window.ethereum.on("accountsChanged", (accounts) => {
-      window.location.reload();
+      // window.location.reload();
+      loadWeb3();
     });
   };
 
