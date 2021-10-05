@@ -94,7 +94,7 @@ const Field = ({
       <div className="text-sm flex justify-between items-center mb-1">
         <span className="font-medium">{label1}</span>
         <span className=" text-xs dark:text-gray-400">
-          Available balance : {Number(balance).toFixed(5)}
+          Available balance : {Number(balance).toFixed(2)}
         </span>
       </div>
       <div className="h-14 w-full rounded-xl field">

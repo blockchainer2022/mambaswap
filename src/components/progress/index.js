@@ -14,7 +14,7 @@ const Index = React.memo(
     }).format(tokenSold);
     // console.log("TOTALSUPPLE", totalSupply / 100);
     const value = (Number(tokenSold) * 100) / Number(totalSupply);
-
+    console.log(value);
     const BorderLinearProgress = withStyles((theme) => ({
       root: {
         height: 10,

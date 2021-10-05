@@ -161,8 +161,8 @@ function App() {
       // console.log("icoprice:", convertedICOPrice);
       const tokensold = await contract.methods.tokenSold().call();
       const finalTokenSold = window.web3.utils.fromWei(tokensold, "ether");
-      console.log("tokenSold:", finalTokenSold);
-      setTokenSold(finalTokenSold);
+      console.log("tokenSold:", tokensold);
+      setTokenSold(tokensold);
       const postTokens = async () => {
         try {
           const response = await axios.post(
@@ -184,12 +184,12 @@ function App() {
         .call({ from: account });
       // console.log("User Token Balance without convert:", tokenBalance);
 
-      const finalTokenBalance = await window.web3.utils.fromWei(
-        tokenBalance,
-        "ether"
-      );
+      // const finalTokenBalance = await window.web3.utils.fromWei(
+      //   tokenBalance,
+      //   "ether"
+      // );
       // console.log("User Token Balance:", finalTokenBalance);
-      setUserTokenBalance(finalTokenBalance);
+      setUserTokenBalance(tokenBalance / 100);
     } else {
       toast("Please connect to main net", {
         type: "error",
