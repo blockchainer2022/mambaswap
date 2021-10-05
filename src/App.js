@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InformationModal, ConfirmationLoadingPopup } from "./components";
 import axios from "axios";
-import Web3Modal, { local } from "web3modal";
+import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 function App() {
