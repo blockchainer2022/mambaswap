@@ -4,7 +4,6 @@ import Web3 from "web3";
 import { contractAbi, contractAddress } from "./config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import swal from "sweetalert";
 import { InformationModal, ConfirmationLoadingPopup } from "./components";
 import axios from "axios";
 import Web3Modal from "web3modal";
