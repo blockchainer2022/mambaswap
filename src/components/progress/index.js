@@ -34,7 +34,7 @@ const Index = React.memo(
 
     const value = (Number(data.total_sold) * 100) / Number(data.total_supply);
 
-    console.log(value);
+    // console.log(value);
     const BorderLinearProgress = withStyles((theme) => ({
       root: {
         height: 10,
@@ -52,8 +52,8 @@ const Index = React.memo(
     return (
       <div className="my-4 mb-6 dark:text-gray-50 capitalize">
         <div className="flex mb-1 justify-between items-center">
-          <span>{data && data.total_supply_formatted}</span>
           <span>{data && data.total_sold_formatted}</span>
+          <span>{data && data.total_supply_formatted}</span>
         </div>
 
         <BorderLinearProgress
