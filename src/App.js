@@ -89,8 +89,6 @@ function App() {
   //for MetaMask
 
   async function loadWeb3() {
-    // const localItems = localStorage.getItem("account");
-    // console.log(localItems);
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
 
@@ -129,9 +127,11 @@ function App() {
   }
 
   useEffect(() => {
-    if (account) {
+    const localAccount = localStorage.getItem("account");
+    if (localAccount === "metamask") {
       loadWeb3();
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
