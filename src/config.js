@@ -46,6 +46,13 @@ export const contractAbi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "ICOTarget",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       { internalType: "uint256", name: "_amountTokenDesired", type: "uint256" },
       { internalType: "uint256", name: "_amountETHMin", type: "uint256" },
@@ -79,48 +86,6 @@ export const contractAbi = [
   {
     inputs: [],
     name: "endTime",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getEndTime",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getICOPrice",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getRouterAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getStartTime",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getTokenAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getTokenSold",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
@@ -169,15 +134,6 @@ export const contractAbi = [
   },
   {
     inputs: [],
-    name: "router",
-    outputs: [
-      { internalType: "contract IPancakeRouter02", name: "", type: "address" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "routerAddress",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
@@ -219,13 +175,6 @@ export const contractAbi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_baseRate", type: "uint256" }],
-    name: "updateBaseRate",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [{ internalType: "uint256", name: "_time", type: "uint256" }],
     name: "updateEndTime",
     outputs: [],
@@ -235,6 +184,13 @@ export const contractAbi = [
   {
     inputs: [{ internalType: "uint256", name: "_ICOPrice", type: "uint256" }],
     name: "updateICOPrice",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_ICOTarget", type: "uint256" }],
+    name: "updateICOTarget",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -279,5 +235,5 @@ export const contractAbi = [
     type: "function",
   },
 ];
-
-export const contractAddress = "0xe5F7033010C858B3dAE194DE135A0e779e2b1472";
+export const contractAddress = "0x3fbcc4F4b09B717b482c3fB959882eEEF91D0D5b";
+// export const contractAddress = "0xe5F7033010C858B3dAE194DE135A0e779e2b1472";

@@ -20,14 +20,14 @@ const Index = ({
     const reg = /^\d*\.?\d*$/;
     if (reg.test(e.target.value)) {
       setBnb(e.target.value);
-      setMamba(icoPrice * e.target.value);
+      setMamba(Number(icoPrice) * e.target.value);
     }
   };
   const mambaHandler = (e) => {
     const reg = /^\d*\.?\d*$/;
     if (reg.test(e.target.value)) {
       setMamba(e.target.value);
-      setBnb(e.target.value / icoPrice);
+      setBnb(e.target.value / Number(icoPrice));
     }
   };
   const total2 = new Intl.NumberFormat("en-GB", {

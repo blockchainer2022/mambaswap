@@ -1,38 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import axios from "axios";
 const Index = React.memo(
   ({ totalSupply = 0, tokenSold = 0, account = false }) => {
-    const [data, setData] = useState({});
+    const total = new Intl.NumberFormat("en-GB", {
+      notation: "compact",
+      compactDisplay: "short",
+    }).format(totalSupply / 100);
 
-    useEffect(() => {
-      const getData = async () => {
-        try {
-          const { data } = await axios.get(
-            "https://defi.mobiwebsolutionz.com/api/mamba/get-ico-details.php"
-          );
-          console.log(data.data);
-          setData(data.data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getData();
-    }, []);
+    const total2 = new Intl.NumberFormat("en-GB", {
+      notation: "compact",
+      compactDisplay: "short",
+    }).format(tokenSold);
+    // console.log("TOTALSUPPLE", totalSupply / 100);
 
-    // const total = new Intl.NumberFormat("en-GB", {
-    //   notation: "compact",
-    //   compactDisplay: "short",
-    // }).format(totalSupply / 100);
-
-    // const total2 = new Intl.NumberFormat("en-GB", {
-    //   notation: "compact",
-    //   compactDisplay: "short",
-    // }).format(tokenSold);
-    // // console.log("TOTALSUPPLE", totalSupply / 100);
-
-    const value = (Number(data.total_sold) * 100) / Number(data.total_supply);
+    const value = (Number(tokenSold) * 100) / Number(totalSupply);
 
     // console.log(value);
     const BorderLinearProgress = withStyles((theme) => ({
@@ -52,8 +34,8 @@ const Index = React.memo(
     return (
       <div className="my-4 mb-6 dark:text-gray-50 capitalize">
         <div className="flex mb-1 justify-between items-center">
-          <span>{data && data.total_sold_formatted}</span>
-          <span>{data && data.total_supply_formatted}</span>
+          <span>{total2}</span>
+          <span>{total}</span>
         </div>
 
         <BorderLinearProgress

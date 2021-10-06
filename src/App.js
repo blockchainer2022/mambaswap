@@ -134,7 +134,6 @@ function App() {
     if (localAccount === "walletconnect") {
       loadWalleConnect();
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
@@ -156,11 +155,16 @@ function App() {
       // const finalTotalSupply = window.web3.utils.fromWei(totalsupply, "ether");
       // console.log("totalSupply:", totalsupply);
       setTotalSupply(totalsupply);
-      console.log(totalsupply);
+      console.log("total supply", totalsupply);
 
-      const price = await contract.methods.getICOPrice().call();
+      const price = await contract.methods.ICOPrice().call();
       setPrice(price);
-
+      const endTime = await contract.methods.endTime().call();
+      console.log("endTime:", endTime);
+      const startTime = await contract.methods.startTime().call();
+      console.log("Start time:", startTime);
+      const ICOtarget = await contract.methods.ICOTarget().call();
+      console.log("IcoTARGET:", ICOtarget);
       // const convertedICOPrice = Web3.utils.fromWei(price);
       setIcoPrice(price);
       // console.log("icoprice:", convertedICOPrice);
@@ -173,6 +177,10 @@ function App() {
           const response = await axios.post(
             "https://defi.mobiwebsolutionz.com/api/mamba/update.php",
             {
+              startTime: startTime,
+              endTime: endTime,
+              ICOprice: price,
+              ICOtarget: ICOtarget,
               total_supply: totalsupply,
               total_sold: tokensold,
             }
@@ -193,8 +201,8 @@ function App() {
       //   tokenBalance,
       //   "ether"
       // );
-      // console.log("User Token Balance:", finalTokenBalance);
       setUserTokenBalance(tokenBalance / 100);
+      console.log("User Token Balance:", tokenBalance);
     } else {
       toast("Please connect to main net", {
         type: "error",
@@ -219,14 +227,14 @@ function App() {
   const addAccountsAndChainListener = async () => {
     //this event will be emitted when the currently connected chain changes.
     window.ethereum.on("chainChanged", (_chainId) => {
-      // window.location.reload();
-      loadWeb3();
+      window.location.reload();
+      // loadWeb3();
     });
 
     // this event will be emitted whenever the user's exposed account address changes.
     window.ethereum.on("accountsChanged", (accounts) => {
-      // window.location.reload();
-      loadWeb3();
+      window.location.reload();
+      // loadWeb3();
     });
   };
 
