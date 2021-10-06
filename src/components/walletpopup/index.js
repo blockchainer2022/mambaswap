@@ -30,12 +30,17 @@ const Index = ({
     window.location.reload();
     onClose((prev) => !prev);
   };
-
+  const popupHandler = (e) => {
+    if (e.target.classList.contains("walletModal")) {
+      onClose((prev) => !prev);
+    }
+  };
   return (
     <>
       <aside
-        className="bn-onboard-custom bn-onboard-modal svelte-rntogh"
+        className="bn-onboard-custom  svelte-rntogh walletModal relative"
         style={open ? { zIndex: "100" } : { display: "none" }}
+        onClick={popupHandler}
       >
         <section
           className="bn-onboard-custom bn-onboard-modal-content svelte-rntogh bn-onboard-dark-mode"
