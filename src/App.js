@@ -8,7 +8,7 @@ import { InformationModal, ConfirmationLoadingPopup } from "./components";
 import axios from "axios";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-
+import "./app.css";
 function App() {
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState("");

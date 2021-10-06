@@ -42,6 +42,9 @@ const Index = ({
         style={open ? { zIndex: "100" } : { display: "none" }}
         onClick={popupHandler}
       >
+        <div className="closeBtn" onClick={() => onClose((prev) => !prev)}>
+          <i className="fas fa-times"></i>
+        </div>
         <section
           className="bn-onboard-custom bn-onboard-modal-content svelte-rntogh bn-onboard-dark-mode"
           style={{ width: "60vw" }}
