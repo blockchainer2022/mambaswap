@@ -38,27 +38,29 @@ const Index = ({
   return (
     <>
       <aside
-        className="bn-onboard-custom  svelte-rntogh walletModal relative"
+        className="bn-onboard-custom  svelte-rntogh walletModal "
         style={open ? { zIndex: "100" } : { display: "none" }}
         onClick={popupHandler}
       >
-        <div className="closeBtn" onClick={() => onClose((prev) => !prev)}>
-          <i className="fas fa-times"></i>
-        </div>
         <section
-          className="bn-onboard-custom bn-onboard-modal-content svelte-rntogh bn-onboard-dark-mode"
+          className="bn-onboard-custom bn-onboard-modal-content svelte-rntogh bn-onboard-dark-mode relative"
           style={{ width: "60vw" }}
         >
-          <header className="bn-onboard-custom bn-onboard-modal-content-header svelte-8i8o6j">
-            <div className="bn-onboard-custom bn-onboard-modal-content-header-icon svelte-8i8o6j bn-onboard-dark-mode-background">
-              <Image />
+          <header className="bn-onboard-custom bn-onboard-modal-content-header svelte-8i8o6j justify-between">
+            <div className="flex items-center">
+              <div className="bn-onboard-custom bn-onboard-modal-content-header-icon svelte-8i8o6j bn-onboard-dark-mode-background">
+                <Image />
+              </div>
+              <h3
+                className="bn-onboard-custom bn-onboard-modal-content-header-heading svelte-8i8o6j"
+                style={{ color: "#fff" }}
+              >
+                {title}
+              </h3>
             </div>
-            <h3
-              className="bn-onboard-custom bn-onboard-modal-content-header-heading svelte-8i8o6j"
-              style={{ color: "#fff" }}
-            >
-              {title}
-            </h3>
+            <div className="closeBtn" onClick={() => onClose((prev) => !prev)}>
+              <i className="fas fa-times"></i>
+            </div>
           </header>{" "}
           <section className="bn-onboard-custom bn-onboard-modal-selected-wallet svelte-mi6ahc">
             <p

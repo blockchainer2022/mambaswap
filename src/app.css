@@ -1,15 +1,13 @@
 .closeBtn {
-  top: 50px;
-  right: 100px;
-  color: white;
-  font-size: 36px;
-  position: absolute;
+  color: lightgray;
+  font-size: 28px;
+
   cursor: pointer;
 }
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .closeBtn {
     font-size: 24px;
     top: 30px;
     right: 40px;
   }
-}
+} */

@@ -21,13 +21,32 @@ const Index = ({ account, loadWeb3, loadWalleConnect }) => {
         <div className="hidden md:block flex-1">
           <ul className="flex list-none font-medium ml-8 ">
             <li className="p-3.5 text-sm">
-              <a href="#roadmap">Home</a>
+              <a href="http://mambatoken.org/" target="_blank" rel="noreferrer">
+                Home
+              </a>
             </li>
             <li className="p-3.5 text-sm">
-              <a href="#about">Price Chart</a>
+              <a
+                href="https://www.dextools.io/app/bsc/pair-explorer/0xd718ae747c491cd00380b27ad0ad0c60394958c2"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Price Chart
+              </a>
             </li>
             <li className="p-3.5 text-sm">
-              <a href="#contact">Token Details</a>
+              <a
+                href="https://mambatoken.org/#stats"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Token Details
+              </a>
+            </li>
+            <li className="p-3.5 text-sm">
+              <a href="https://t.me/MambaDev" target="_blank" rel="noreferrer">
+                Contact Us
+              </a>
             </li>
           </ul>
         </div>
@@ -70,18 +89,35 @@ const Index = ({ account, loadWeb3, loadWalleConnect }) => {
           } md:hidden`}
         >
           <ul className="list-none text-center font-medium p-8 text-white">
-            <li className="p-2 text-sm ">
-              <a href="#roadmap">Roadmap</a>
+            <li className="p-2 text-sm " onClick={() => setOpen(!open)}>
+              <a href="http://mambatoken.org/" target="_blank" rel="noreferrer">
+                Home
+              </a>
             </li>
-            <li className="p-2 text-sm">
-              <a href="#about">About us</a>
+            <li className="p-2 text-sm" onClick={() => setOpen(!open)}>
+              <a
+                href="https://www.dextools.io/app/bsc/pair-explorer/0xd718ae747c491cd00380b27ad0ad0c60394958c2"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Price Chart
+              </a>
             </li>
-            <li className="p-2 text-sm">
-              <a href="#contact">Contact us</a>
+            <li className="p-2 text-sm" onClick={() => setOpen(!open)}>
+              <a
+                href="https://mambatoken.org/#stats"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Token Details
+              </a>
             </li>
-            <li className="p-2 text-sm">
-              <a href="#faq">FAQ's</a>
+            <li className="p-2 text-sm" onClick={() => setOpen(!open)}>
+              <a href="https://t.me/MambaDev" target="_blank" rel="noreferrer">
+                Contact Us
+              </a>
             </li>
+
             <li className="p-2 text-sm">
               <Button onClick={() => setWalletOpen((prev) => !prev)}>
                 {account
