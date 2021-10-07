@@ -44,7 +44,7 @@ const Home = ({
       <HeroSection
         account={account}
         buy={buy}
-        totalSupply={data.total_supply}
+        totalSupply={data.ICOtarget}
         icoPrice={data.ICOprice}
         bnbBalance={bnbBalance}
         tokenSold={data.total_sold}
