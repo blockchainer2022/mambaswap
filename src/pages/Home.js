@@ -23,7 +23,7 @@ const Home = ({
     const getData = async () => {
       try {
         const { data } = await axios.get(
-          "https://defi.mobiwebsolutionz.com/api/mamba/get-ico-details-v2.php"
+          "https://defi.mobiwebsolutionz.com/api/mamba/get-ico-details.php"
         );
         console.log(data.data);
         setData(data.data);
