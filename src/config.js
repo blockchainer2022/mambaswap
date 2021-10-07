@@ -92,6 +92,20 @@ export const contractAbi = [
   },
   {
     inputs: [],
+    name: "factory",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getLPTokensBalance",
+    outputs: [{ internalType: "uint256", name: "liquidity", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "getTokenSupply",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
@@ -123,6 +137,17 @@ export const contractAbi = [
     name: "owner",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_lpTokens", type: "uint256" },
+      { internalType: "uint256", name: "_amountTokenMin", type: "uint256" },
+      { internalType: "uint256", name: "_amountETHMin", type: "uint256" },
+    ],
+    name: "removeLiquidityETH",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -222,6 +247,13 @@ export const contractAbi = [
   },
   {
     inputs: [],
+    name: "wBnb",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "withdrawBnb",
     outputs: [],
     stateMutability: "nonpayable",
@@ -235,5 +267,6 @@ export const contractAbi = [
     type: "function",
   },
 ];
-export const contractAddress = "0x3fbcc4F4b09B717b482c3fB959882eEEF91D0D5b";
+// export const contractAddress = "0x3fbcc4F4b09B717b482c3fB959882eEEF91D0D5b";
 // export const contractAddress = "0xe5F7033010C858B3dAE194DE135A0e779e2b1472";
+export const contractAddress = "0x7026e274099f75aBf6670eaE5e43AFD78027db68";
