@@ -4,6 +4,7 @@ import "./style.css";
 import Mamba from "../../assets/images/Mamba.png";
 import Bnb from "../../assets/images/logo.png";
 import WalletPopup from "../walletpopup";
+import moment from "moment";
 const Index = ({
   icoPrice = 0,
   account,
@@ -48,6 +49,11 @@ const Index = ({
     }
   };
 
+  var s = new Date(Number(startTime * 1000)).toLocaleDateString("en-US");
+  var e = new Date(Number(endTime * 1000)).toLocaleDateString("en-US");
+  const start = +new moment(`${s} 00:00:00`).utc() > +new Date();
+  const end = +new moment(`${e} 00:00:00`).utc() < +new Date();
+
   return (
     <>
       <div
@@ -78,13 +84,7 @@ const Index = ({
             <span className="block text-xs mt-2 text-gray-500 text-center">
               1 BNB = {total2} MAMBA
             </span>
-            <div
-              className={`mt-8 swapbtn ${
-                Number(endTime) > +Date.now() || Number(startTime) > +Date.now()
-                  ? "active"
-                  : null
-              }`}
-            >
+            <div className={`mt-8 swapbtn ${start || end ? "active" : null}`}>
               <Button secondary={true}>
                 {account ? "Swap To Mamba" : "Connect Wallet"}
               </Button>

@@ -1,10 +1,17 @@
 import "./style.css";
+import moment from "moment";
+const Timer = ({ days, hours, minutes, seconds, startTime, endTime }) => {
+  var s = new Date(Number(startTime * 1000)).toLocaleDateString("en-US");
+  var e = new Date(Number(endTime * 1000)).toLocaleDateString("en-US");
+  // console.log(+new moment(`${s} 00:00:00`).utc() > +new Date());
+  const start = +new moment(`${s} 00:00:00`).utc() > +new Date();
+  console.log("TIME FROM COUNT", e);
+  const end = +new moment(`${e} 00:00:00`).utc() < +new Date();
 
-const Timer = ({ days, hours, minutes, seconds, startTime }) => {
   return (
     <div className="border-2 border-primary py-2 w-full  rounded-lg dark:text-gray-50">
       <h6 className="text-center text-md relative pb-3">
-        {Number(startTime) > +Date.now() ? "ICO Starts in" : "ICO ends in"}
+        {start ? "ICO Starts in" : end ? "ICO has ended" : "ICO ends in"}
       </h6>
       <div className="mx-auto mt-3 text-base text-center text-black dark:text-gray-50 font-bold font-sans">
         <span>
