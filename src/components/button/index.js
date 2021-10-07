@@ -4,7 +4,6 @@ const Index = ({
   children,
   secondary = false,
   responsive = false,
-
   disabled,
   ...props
 }) => {

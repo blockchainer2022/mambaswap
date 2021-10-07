@@ -19,3 +19,7 @@
   align-items: center;
   justify-content: center;
 }
+.swapbtn.active button {
+  background-color: gray;
+  pointer-events: none;
+}

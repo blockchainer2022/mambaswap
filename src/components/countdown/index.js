@@ -1,9 +1,11 @@
 import "./style.css";
 
-const Timer = ({ days, hours, minutes, seconds }) => {
+const Timer = ({ days, hours, minutes, seconds, startTime }) => {
   return (
     <div className="border-2 border-primary py-2 w-full  rounded-lg dark:text-gray-50">
-      <h6 className="text-center text-md relative pb-3">ICO ends in</h6>
+      <h6 className="text-center text-md relative pb-3">
+        {Number(startTime) > +Date.now() ? "ICO Starts in" : "ICO ends in"}
+      </h6>
       <div className="mx-auto mt-3 text-base text-center text-black dark:text-gray-50 font-bold font-sans">
         <span>
           {`${days.toString().padStart(2, "0")}d`}{" "}

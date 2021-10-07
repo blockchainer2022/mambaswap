@@ -12,7 +12,11 @@ const Index = ({
   userTokenBalance,
   loadWeb3,
   loadWalleConnect,
+  startTime,
+  endTime,
 }) => {
+  // console.log(endTime < +Date.now());
+  // console.log(+Date.now());
   const [bnb, setBnb] = useState("");
   const [mamba, setMamba] = useState("");
   const [walletOpen, setWalletOpen] = useState(false);
@@ -74,7 +78,13 @@ const Index = ({
             <span className="block text-xs mt-2 text-gray-500 text-center">
               1 BNB = {total2} MAMBA
             </span>
-            <div className="mt-8">
+            <div
+              className={`mt-8 swapbtn ${
+                Number(endTime) > +Date.now() || Number(startTime) > +Date.now()
+                  ? "active"
+                  : null
+              }`}
+            >
               <Button secondary={true}>
                 {account ? "Swap To Mamba" : "Connect Wallet"}
               </Button>

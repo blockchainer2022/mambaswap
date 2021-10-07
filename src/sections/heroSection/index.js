@@ -17,7 +17,7 @@ const Index = ({
   endTime,
 }) => {
   var s = new Date(Number(endTime * 1000)).toLocaleDateString("en-US");
-  console.log(endTime);
+  // console.log(endTime);
   const difference = +new moment(`${s} 00:00:00`).utc() - +new Date();
 
   const [days, setDays] = useState(0);
@@ -49,6 +49,8 @@ const Index = ({
             hours={hours}
             minutes={minutes}
             seconds={seconds}
+            startTime={startTime}
+            endTime={endTime}
           />
           <Progress
             totalSupply={totalSupply}
@@ -63,6 +65,8 @@ const Index = ({
             userTokenBalance={userTokenBalance}
             loadWeb3={loadWeb3}
             loadWalleConnect={loadWalleConnect}
+            startTime={startTime}
+            endTime={endTime}
           />
         </div>
       </div>
