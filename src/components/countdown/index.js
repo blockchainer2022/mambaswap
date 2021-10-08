@@ -5,7 +5,7 @@ const Timer = ({ days, hours, minutes, seconds, startTime, endTime }) => {
   var e = new Date(Number(endTime * 1000)).toLocaleDateString("en-US");
   // console.log(+new moment(`${s} 00:00:00`).utc() > +new Date());
   const start = +new moment(`${s} 00:00:00`).utc() > +new Date();
-  console.log("TIME FROM COUNT", e);
+  // console.log("TIME FROM COUNT", e);
   const end = +new moment(`${e} 00:00:00`).utc() < +new Date();
 
   return (
